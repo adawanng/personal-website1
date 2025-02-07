@@ -182,24 +182,6 @@
             transform: scale(1.02);
         }
 
-        .language-switch {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            color: #333;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            backdrop-filter: blur(5px);
-            margin-left: 1rem;
-        }
-
-        .language-switch:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
         nav ul {
             display: flex;
             list-style: none;
@@ -240,6 +222,20 @@
             font-size: 2.5rem;
             color: #1f2937;
             margin-bottom: 1rem;
+        }
+
+        .content-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card {
+            width: 45%;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
         }
 
         .content {
@@ -329,50 +325,360 @@
             font-family: 'Impact', sans-serif;
             color: #4CAF50;
         }
+
+        .envelope {
+            border: 2px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .envelope textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .envelope input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        .envelope button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .envelope button:hover {
+            background-color: #45a049;
+        }
+
+        .styled-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: normal;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .styled-button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        .styled-button:active {
+            background-color: #3e8e41;
+        }
+
+        .overlay-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 1.5rem;
+            color: green;
+            z-index: 10;
+        }
+
+        .icon-button {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .content-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #speak-form textarea {
+            width: 100%;
+            height: 100px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            resize: none;
+        }
+
+        #speak-form input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        #input-layer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #latest-message, #all-messages div {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #all-messages {
+            max-height: 200px;
+            overflow-y: auto;
+        }
     </style>
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">
-                <span class="site-name">dada的流浪站</span>
+                <span class="site-name">Dada的流浪站</span>
                 <span class="site-name-en">dada's Wandering Site</span>
             </div>
             <ul>
-                <li><a href="#home" data-lang-key="nav.home">关于今天</a></li>
-                <li><a href="#about" data-lang-key="nav.about">关于</a></li>
-                <li><a href="#contact" data-lang-key="nav.contact">联系我们</a></li>
-                <li><button class="language-switch" data-lang-key="nav.switchLang">切换为英文</button></li>
+                <li><a href="#home">关于今天</a></li>
+                <li><a href="#contact">信箱</a></li>
+                <li><a href="#about">咖啡角</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section id="home" class="hero">
-            <h1 data-lang-key="hero.title">关于今天</h1>
+            <h1>这里是Dada的流浪站。随便坐 🪑</h1>
             <p id="current-date" class="date-display"><span class="date-icon"></span><span></span> 📅</p>
             <p id="species-count" class="species-display">🌍 今天地球上有 <span class="special-font">870万</span> 个物种正共同存在着。</p>
         </section>
 
-        <section id="about" class="content">
-            <h2 data-lang-key="about.title">关于我们</h2>
-            <p data-lang-key="about.content">这里是关于我们的介绍内容。我们致力于为用户提供最好的服务。</p>
-        </section>
+        <div class="content-row">
+            <section id="contact" class="content card" style="text-align: center;">
+                <div id="first-layer">
+                    <h2>Dada的收件箱 📬</h2>
+                    <button id="talk-to-dada" class="styled-button">Talk to Dada</button>
+                </div>
+                <div id="second-layer" style="display:none;">
+                    <button id="back-button" class="icon-button">🔙</button>
+                    <h2>收信箱</h2>
+                    <form id="mailbox-form" class="envelope">
+                        <textarea placeholder="写下你的信息..."></textarea>
+                        <input type="file" accept="image/*">
+                        <button type="submit">投递</button>
+                    </form>
+                    <p id="success-message" class="overlay-message" style="display:none; color: green; font-weight: bold;">发言成功！</p>
+                </div>
+            </section>
 
-        <section id="contact" class="content">
-            <h2 data-lang-key="contact.title">联系我们</h2>
-            <p data-lang-key="contact.subtitle">您可以通过以下方式联系我们：</p>
-            <ul style="list-style: none; margin-top: 1rem;">
-                <li><span data-lang-key="contact.email">📧 邮箱：example@example.com</span></li>
-                <li><span data-lang-key="contact.phone">📞 电话：123-456-7890</span></li>
-                <li><span data-lang-key="contact.address">📍 地址：某某市某某区某某街道</span></li>
-            </ul>
-        </section>
+            <section id="about" class="content card" style="text-align: center;">
+                <div id="message-layer">
+                    <h2>客厅咖啡角 ☕</h2>
+                    <div id="latest-message">
+                        <!-- 最新留言将显示在这里 -->
+                    </div>
+                    <button id="show-all-button" class="styled-button">咖啡豆</button>
+                    <div id="all-messages" style="display:none;">
+                        <!-- 所有留言将显示在这里 -->
+                    </div>
+                    <button id="speak-button" class="styled-button">让我来说！</button>
+                </div>
+                <div id="input-layer" style="display:none;">
+                    <h2>To流浪站的站友们：</h2>
+                    <form id="speak-form">
+                        <textarea placeholder="我来说两句！"></textarea>
+                        <input type="text" placeholder="我的姓名牌" style="width: 100%; border-radius: 10px; border: 1px solid #ccc; padding: 10px; font-size: 1rem; margin-bottom: 10px;">
+                        <input type="file" accept="image/*">
+                        <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+                            <button id="cancel-button" class="styled-button">先不说了</button>
+                            <button type="submit" class="styled-button">我先说到这</button>
+                        </div>
+                    </form>
+                    <p id="success-message" class="overlay-message" style="display:none; color: green; font-weight: bold;">发言成功！</p>
+                </div>
+
+                <script>
+                    async function fetchMessages() {
+                        const querySnapshot = await getDocs(collection(db, "messages"));
+                        const messages = [];
+                        querySnapshot.forEach((doc) => {
+                            messages.push(doc.data());
+                        });
+                        messages.sort((a, b) => b.timestamp - a.timestamp);
+                        console.log('Fetched messages:', messages); // 调试信息
+                        return messages;
+                    }
+
+                    async function displayLatestMessage() {
+                        const messages = await fetchMessages();
+                        const latestMessage = messages[0];
+                        const latestMessageContainer = document.getElementById('latest-message');
+                        latestMessageContainer.innerHTML = `<p>${latestMessage.name}: ${latestMessage.text}</p>`;
+                    }
+
+                    document.getElementById('show-all-button').addEventListener('click', async function() {
+                        const messages = await fetchMessages();
+                        const allMessagesContainer = document.getElementById('all-messages');
+                        allMessagesContainer.innerHTML = '';
+                        messages.forEach((message) => {
+                            const messageElement = document.createElement('div');
+                            messageElement.innerHTML = `<p>${message.name}: ${message.text}</p>`;
+                            allMessagesContainer.prepend(messageElement); // 使用 prepend 确保最新留言在顶部
+                        });
+                        allMessagesContainer.style.display = 'block';
+                    });
+
+                    displayLatestMessage();
+                </script>
+            </section>
+        </div>
     </main>
 
     <footer>
-        <p><span data-lang-key="footer.copyright">&copy; 2025 dada的流浪站. All rights reserved.</span></p>
+        <p>&copy; 2025 dada的流浪站. All rights reserved.</p>
     </footer>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-analytics.js";
+        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyCP_SVyn6GYczYgS3gBNWR3rFAarWNohLA",
+            authDomain: "dada-s-wandering-site.firebaseapp.com",
+            projectId: "dada-s-wandering-site",
+            storageBucket: "dada-s-wandering-site.firebasestorage.app",
+            messagingSenderId: "202431353826",
+            appId: "1:202431353826:web:1f84bc48af275f0dff9fbb",
+            measurementId: "G-NY1RFE3W4S"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+
+        document.getElementById('mailbox-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const message = document.querySelector('textarea').value;
+            const fileInput = document.querySelector('input[type="file"]');
+            const file = fileInput.files[0];
+            const docRef = await addDoc(collection(db, "messages"), {
+                text: message,
+                imageUrl: file ? URL.createObjectURL(file) : null
+            });
+            document.getElementById('success-message').style.display = 'block';
+            document.getElementById('mailbox-form').style.display = 'none';
+            setTimeout(function() {
+                document.getElementById('success-message').style.display = 'none';
+                document.getElementById('mailbox-form').style.display = 'block';
+                document.getElementById('second-layer').style.display = 'none';
+                document.getElementById('first-layer').style.display = 'block';
+            }, 2000);
+        });
+
+        async function displayMessages() {
+            // Functionality removed to ensure privacy
+        }
+
+        document.getElementById('talk-to-dada').addEventListener('click', function() {
+            document.getElementById('first-layer').style.display = 'none';
+            document.getElementById('second-layer').style.display = 'block';
+        });
+
+        document.getElementById('back-button').addEventListener('click', function() {
+            document.getElementById('second-layer').style.display = 'none';
+            document.getElementById('first-layer').style.display = 'block';
+        });
+
+        document.getElementById('mailbox-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('success-message').style.display = 'block';
+            document.getElementById('mailbox-form').style.display = 'none';
+            setTimeout(function() {
+                document.getElementById('success-message').style.display = 'none';
+                document.getElementById('mailbox-form').style.display = 'block';
+                document.getElementById('second-layer').style.display = 'none';
+                document.getElementById('first-layer').style.display = 'block';
+            }, 2000);
+        });
+
+        document.getElementById('speak-button').addEventListener('click', function() {
+            document.getElementById('message-layer').style.display = 'none';
+            document.getElementById('input-layer').style.display = 'block';
+        });
+
+        document.getElementById('cancel-button').addEventListener('click', function() {
+            document.getElementById('input-layer').style.display = 'none';
+            document.getElementById('message-layer').style.display = 'block';
+        });
+
+        document.getElementById('speak-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const name = document.querySelector('#speak-form input[type="text"]').value;
+            const messageText = document.querySelector('#speak-form textarea').value;
+            const fileInput = document.querySelector('#speak-form input[type="file"]');
+            const file = fileInput.files[0];
+
+            // Add the new message to Firestore
+            await addDoc(collection(db, "messages"), {
+                name: name,
+                text: messageText,
+                imageUrl: file ? URL.createObjectURL(file) : null,
+                timestamp: Date.now()
+            });
+
+            // Display success message
+            document.querySelector('#input-layer #success-message').style.display = 'block';
+
+            // Clear form inputs
+            document.querySelector('#speak-form input[type="text"]').value = '';
+            document.querySelector('#speak-form textarea').value = '';
+            fileInput.value = '';
+
+            // Directly update the latest message display
+            const latestMessageContainer = document.getElementById('latest-message');
+            latestMessageContainer.innerHTML = `<p>${name}: ${messageText}</p>`;
+
+            setTimeout(function() {
+                document.querySelector('#input-layer #success-message').style.display = 'none';
+                document.getElementById('input-layer').style.display = 'none';
+                document.getElementById('message-layer').style.display = 'block';
+            }, 2000);
+        });
+
+        document.getElementById('show-all-button').addEventListener('click', async function() {
+            const messages = await fetchMessages();
+            const allMessagesContainer = document.getElementById('all-messages');
+            allMessagesContainer.innerHTML = '';
+            messages.forEach((message) => {
+                const messageElement = document.createElement('div');
+                messageElement.innerHTML = `<p>${message.name}: ${message.text}</p>`;
+                allMessagesContainer.prepend(messageElement); // 使用 prepend 确保最新留言在顶部
+            });
+            allMessagesContainer.style.display = 'block';
+        });
+    </script>
 
     <script>
         // 创建小狗元素
@@ -495,54 +801,21 @@
         const translations = {
             'zh': {
                 'nav.home': '关于今天',
-                'nav.about': '关于',
-                'nav.contact': '联系我们',
-                'nav.switchLang': '切换为英文',
-                'hero.title': '关于今天',
-                'hero.subtitle': '这是一个简单但现代的网站示例',
-                'about.title': '关于我们',
-                'about.content': '这里是关于我们的介绍内容。我们致力于为用户提供最好的服务。',
-                'contact.title': '联系我们',
-                'contact.subtitle': '您可以通过以下方式联系我们：',
-                'contact.email': '📧 邮箱：example@example.com',
-                'contact.phone': '📞 电话：123-456-7890',
-                'contact.address': '📍 地址：某某市某某区某某街道',
+                'nav.mailbox': '信箱',
+                'nav.coffee': '咖啡角',
+                'hero.title': '这里是Dada的流浪站。随便坐 🪑',
                 'footer.copyright': '&copy; 2025 dada的流浪站. All rights reserved.',
             },
             'en': {
                 'nav.home': 'About Today',
-                'nav.about': 'About',
-                'nav.contact': 'Contact Us',
-                'nav.switchLang': 'Switch to Chinese',
+                'nav.mailbox': 'Mailbox',
+                'nav.coffee': 'Coffee Corner',
                 'hero.title': 'About Today',
-                'hero.subtitle': 'A simple yet modern website example',
-                'about.title': 'About Us',
-                'about.content': 'Here is our introduction. We are committed to providing the best service to our users.',
-                'contact.title': 'Contact Us',
-                'contact.subtitle': 'You can contact us through the following ways:',
-                'contact.email': '📧 Email: example@example.com',
-                'contact.phone': '📞 Phone: 123-456-7890',
-                'contact.address': '📍 Address: Some Street, Some District, Some City',
                 'footer.copyright': '&copy; 2025 dada\'s Wandering Site. All rights reserved.',
             }
         };
 
         let currentLang = 'zh';
-
-        function switchLanguage() {
-            currentLang = currentLang === 'zh' ? 'en' : 'zh';
-            updateContent();
-            localStorage.setItem('preferredLanguage', currentLang);
-        }
-
-        function updateContent() {
-            document.querySelectorAll('[data-lang-key]').forEach(element => {
-                const key = element.getAttribute('data-lang-key');
-                if (translations[currentLang][key]) {
-                    element.innerHTML = translations[currentLang][key];
-                }
-            });
-        }
 
         function updateDateAndSpeciesText() {
             const today = new Date();
@@ -554,18 +827,6 @@
         }
 
         updateDateAndSpeciesText();
-
-        document.querySelector('.language-switch').addEventListener('click', () => {
-            switchLanguage();
-            updateContent();
-        });
-
-        // 加载用户偏好语言
-        const savedLang = localStorage.getItem('preferredLanguage');
-        if (savedLang) {
-            currentLang = savedLang;
-            updateContent();
-        }
 
         // 数字滚动效果
         const speciesCountElement = document.getElementById('species-count').querySelector('span');
