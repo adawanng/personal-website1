@@ -437,7 +437,7 @@
             border-radius: 8px;
             padding: 10px;
             margin-bottom: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         #all-messages {
@@ -482,7 +482,7 @@
                         <input type="file" accept="image/*">
                         <button type="submit">投递</button>
                     </form>
-                    <p id="success-message" class="overlay-message" style="display:none; color: green; font-weight: bold;">发言成功！</p>
+                    <p id="success-message" class="overlay-message" style="display:none; color: green; font-weight: bold;">投递成功！</p>
                 </div>
             </section>
 
@@ -580,20 +580,27 @@
 
         document.getElementById('mailbox-form').addEventListener('submit', async function(event) {
             event.preventDefault();
-            const message = document.querySelector('textarea').value;
-            const fileInput = document.querySelector('input[type="file"]');
+            const messageText = document.querySelector('#mailbox-form textarea').value;
+            const fileInput = document.querySelector('#mailbox-form input[type="file"]');
             const file = fileInput.files[0];
-            const docRef = await addDoc(collection(db, "messages"), {
-                text: message,
-                imageUrl: file ? URL.createObjectURL(file) : null
+
+            // Add the new message to Firestore
+            await addDoc(collection(db, "mailbox"), {
+                text: messageText,
+                imageUrl: file ? URL.createObjectURL(file) : null,
+                timestamp: Date.now()
             });
-            document.getElementById('success-message').style.display = 'block';
-            document.getElementById('mailbox-form').style.display = 'none';
+
+            // Display success message
+            document.querySelector('#second-layer #success-message').textContent = '投递成功！';
+            document.querySelector('#second-layer #success-message').style.display = 'block';
+
+            // Clear form inputs
+            document.querySelector('#mailbox-form textarea').value = '';
+            fileInput.value = '';
+
             setTimeout(function() {
-                document.getElementById('success-message').style.display = 'none';
-                document.getElementById('mailbox-form').style.display = 'block';
-                document.getElementById('second-layer').style.display = 'none';
-                document.getElementById('first-layer').style.display = 'block';
+                document.querySelector('#second-layer #success-message').style.display = 'none';
             }, 2000);
         });
 
@@ -613,13 +620,13 @@
 
         document.getElementById('mailbox-form').addEventListener('submit', function(event) {
             event.preventDefault();
-            document.getElementById('success-message').style.display = 'block';
-            document.getElementById('mailbox-form').style.display = 'none';
+            document.querySelector('#second-layer #success-message').style.display = 'block';
+            document.querySelector('#mailbox-form').style.display = 'none';
             setTimeout(function() {
-                document.getElementById('success-message').style.display = 'none';
-                document.getElementById('mailbox-form').style.display = 'block';
-                document.getElementById('second-layer').style.display = 'none';
-                document.getElementById('first-layer').style.display = 'block';
+                document.querySelector('#second-layer #success-message').style.display = 'none';
+                document.querySelector('#mailbox-form').style.display = 'block';
+                document.querySelector('#second-layer').style.display = 'none';
+                document.querySelector('#first-layer').style.display = 'block';
             }, 2000);
         });
 
